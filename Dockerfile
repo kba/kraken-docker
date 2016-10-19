@@ -1,23 +1,25 @@
-FROM alpine:3.4
+FROM alpine:edge
 MAINTAINER Konstantin Baierer <konstantin.baierer@gmail.com>
 ENV PBR_VERSION 0.8.0
 
 ADD alpine-repositories /etc/apk/repositories
 ADD kraken /kraken
 
-RUN apk add --update \
+WORKDIR /kraken
+
+RUN apk add --no-cache \
         build-base \
         zlib-dev \
-        jpeg-dev \
         python-dev \
-        py-pip \
-        py-scipy@testing \
-        py-pbr \
+        py2-pip py-scipy py-lxml py-pillow \
     && ln -s /usr/include/locale.h /usr/include/xlocale.h \
     && pip install pbr \
-    && cd /kraken && pip install -r requirements.txt \
-    && cd /kraken && pip install .
+    && pip install -r requirements.txt \
+    && pip install . \
+    && kraken get default \
+    && kraken get fraktur \
+    && apk del python-dev zlib-dev build-base
 
 WORKDIR /data
 
-CMD kraken
+ENTRYPOINT ["/usr/bin/kraken"]
