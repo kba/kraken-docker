@@ -5,6 +5,6 @@ Docker container for the [kraken OCR engine](https://github.com/mittagessen/krak
 
 ## Usage
 
-Basically, replace `kraken` in every call with `docker run --rm -it kbai/kraken`, e.g.
+Basically, replace `kraken` in every call with `docker run --rm -it kbai/kraken-docker`, e.g.
 
-`kraken --help` -> `docker run -it kbai/kraken --help`
+`kraken --help` -> `docker run -it kbai/kraken-docker --help`
