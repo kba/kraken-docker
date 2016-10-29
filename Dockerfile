@@ -16,6 +16,7 @@ RUN apk add --no-cache \
     && pip install pbr \
     && pip install -r requirements.txt \
     && pip install . \
+    && cp -r /kraken/kraken/templates /usr/lib/python2.7/site-packages/kraken \
     && kraken get default \
     && kraken get fraktur \
     && apk del python-dev zlib-dev build-base
