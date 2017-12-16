@@ -20,7 +20,6 @@ RUN apt-get update && apt-get -y install --no-install-recommends \
         python-pil \
         python-click \
         python-lxml \
-        python-protobuf \
     && pip install --upgrade pip \
     && pip install pbr \
     && pip install -r requirements.txt \
